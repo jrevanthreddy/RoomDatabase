@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg1">
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="contacts"
             type="com.example.roomdatabase.model.Contact" />
     </data>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,44 +18,94 @@
             android:layout_height="wrap_content"
             android:text="Update Details"
             android:textSize="28dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/editText"/>
-        <EditText
-            android:id="@+id/editText"
+            app:layout_constraintBottom_toTopOf="@+id/cardview1"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Name"
-            android:text="@={contacts.name}"
-            android:textColor="@color/black"
-            android:textSize="20dp"
+            app:cardCornerRadius="20dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/editText2"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="#E3DDDD"
+            app:layout_constraintTop_toBottomOf="@id/textview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
-        <EditText
-            android:id="@+id/editText2"
-            android:text="@={contacts.phonenum}"
+            app:layout_constraintBottom_toTopOf="@id/cardview2">
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Name"
+                android:padding="15dp"
+                android:backgroundTint="#E3DDDD"
+                android:text="@={contacts.name}"
+                android:textColor="@color/black"
+                android:textSize="20dp"/>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mobile Number"
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="#E3DDDD"
+            app:layout_constraintTop_toBottomOf="@id/cardview1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintBottom_toTopOf="@id/cardview3">
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile Number"
+                android:backgroundTint="#E3DDDD"
+                android:text="@={contacts.phonenum}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:padding="15dp"/>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:backgroundTint="#E3DDDD"
+            app:layout_constraintTop_toBottomOf="@id/cardview2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/submit">
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Email"
+                android:backgroundTint="#E3DDDD"
+                android:text="@={contacts.email}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:padding="15dp" />
+        </androidx.cardview.widget.CardView>
         <Button
             android:id="@+id/submit"
             android:text="save"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            app:layout_constraintTop_toBottomOf="@+id/cardview3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
 </layout>

@@ -27,7 +27,7 @@ public class AddNewContactClickHandler {
         }else {
             Intent intent = new Intent(context, MainActivity.class);
 
-            Contact c = new Contact(contact.getName(),contact.getPhonenum());
+            Contact c = new Contact(contact.getName(),contact.getPhonenum(),contact.getEmail());
 
             viewModel.addnewcontact(c);
             context.startActivity(intent);

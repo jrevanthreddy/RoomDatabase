@@ -29,15 +29,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     ArrayList<Contact> contactArrayList;
     Context context;
-
     FragmentManager fragmentManager;
-
 
     public ContactAdapter(ArrayList<Contact> contacts,Context context,FragmentManager fragmentManager) {
         this.contactArrayList= contacts;
         this.context=context;
         this.fragmentManager=fragmentManager;
-
     }
 
     @NonNull
@@ -92,6 +89,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 Bundle bundle = new Bundle();
                 bundle.putString("CONTACT_NAME",contact.getName());
                 bundle.putString("CONTACT_PHONENUM",contact.getPhonenum());
+                bundle.putString("CONTACT_EMAIL",contact.getEmail());
                 bundle.putInt("CONTACT_ID",contact.getId());
                 updateFragment.setArguments(bundle);
 
@@ -101,10 +99,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             }
 
 
-
 //            Intent intent = new Intent(context,UpdateActivity.class);
 //            intent.putExtra("CONTACT_ID",contact.getId());
 //            intent.putExtra("CONTACT_NAME",contact.getName());
+//            intent.putExtra("CONTACT_EMAIL",contact.getEmail());
 //            intent.putExtra("CONTACT_PHONENUM",contact.getPhonenum());
 //            context.startActivity(intent);
         }

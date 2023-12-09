@@ -25,7 +25,7 @@ public class UpdateFragment extends DialogFragment {
 
     private FragmentUpdateBinding binding;
     private ViewModel viewModel;
-    private String name, phonenum, contactId;
+    private String name, phonenum,email,contactId;
     private Contact contact;
     private Context context;
 
@@ -33,6 +33,7 @@ public class UpdateFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_update, container, false);
+       // setStyle(STYLE_NO_TITLE,R.style.MyDialogStyle);
 
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
         contact = new Contact();
@@ -40,25 +41,28 @@ public class UpdateFragment extends DialogFragment {
         if (getArguments() != null) {
             name = getArguments().getString("CONTACT_NAME");
             phonenum = getArguments().getString("CONTACT_PHONENUM");
+            email = getArguments().getString("CONTACT_EMAIL");
             contactId = String.valueOf(getArguments().getInt("CONTACT_ID", -1));
             contact.setId(Integer.parseInt(contactId));
             contact.setName(name);
             contact.setPhonenum(phonenum);
+            contact.setEmail(email);
             binding.setContacts(contact);
         }
 
+        context = getContext();
         binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (contact.getName().isEmpty() || contact.getPhonenum().isEmpty()) {
+                if (contact.getName().isEmpty() || contact.getPhonenum().isEmpty() || contact.getEmail().isEmpty()) {
                     Toast.makeText(context, "Please fill the Above fields ", Toast.LENGTH_SHORT).show();
                 } else {
                     if (viewModel != null) {
                         viewModel.update(contact);
-                        Intent intent = new Intent(getActivity().getApplication(), MainActivity.class);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(context, "Data is not Added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "View Model is Null", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -66,4 +70,3 @@ public class UpdateFragment extends DialogFragment {
         return binding.getRoot();
     }
 }
-

@@ -22,7 +22,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     private ActivityUpdateBinding binding;
     private ViewModel viewModel;
-    private String name,phonenum,contactId;
+    private String name,phonenum,email,contactId;
     private Contact contact;
     private Context context;
     private ArrayList<Contact> contactArrayList = new ArrayList<>();
@@ -39,23 +39,24 @@ public class UpdateActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null){
             name = getIntent().getStringExtra("CONTACT_NAME");
             phonenum = getIntent().getStringExtra("CONTACT_PHONENUM");
+            email = getIntent().getStringExtra("CONTACT_EMAIL");
             contactId = String.valueOf(getIntent().getIntExtra("CONTACT_ID", -1));
             contact.setId(Integer.parseInt(contactId));
             contact.setName(name);
             contact.setPhonenum(phonenum);
+            contact.setEmail(email);
             binding.setContacts(contact);
         }
         binding.submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (contact.getName().isEmpty() || contact.getPhonenum().isEmpty()) {
+                if (contact.getName().isEmpty() || contact.getPhonenum().isEmpty() || contact.getEmail().isEmpty()) {
                     Toast.makeText(context, "Please fill the Above fields ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, MainActivity.class);
                     context.startActivity(intent);
                 } else {
                     if (viewModel != null) {
                         viewModel.update(contact);
-                        viewModel.addnewcontact(contact);
                         Intent intent = new Intent(context, MainActivity.class);
                         context.startActivity(intent);
                     } else {

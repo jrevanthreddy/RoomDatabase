@@ -22,13 +22,17 @@ public class Contact {
     @ColumnInfo(name = "contact_Phonenum")
     private String phonenum;
 
+    @ColumnInfo(name = "email")
+    private String email;
+
     public Contact() {
     }
 
-    public Contact(String name, String phonenum) {
+    public Contact(String name, String phonenum,String email) {
         this.id = id;
         this.name = name;
         this.phonenum = phonenum;
+        this.email=email;
     }
 
     public int getId() {return id;}
@@ -48,4 +52,11 @@ public class Contact {
         this.phonenum = phonenum;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
